@@ -1,0 +1,7 @@
+<%= link_to "/", root_path %> - <%= link_to params[:technology_name], categories_path(params[:technology_name]) %> - <%= params[:category_name] %>
+
+<ul>
+  <% @repositories.each do |repository| %>
+    <li><%= link_to repository.name, repository_path(params[:technology_name], params[:category_name], repository.name) %></li>
+  <% end %>
+</ul>

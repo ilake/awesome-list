@@ -1,0 +1,9 @@
+<%= @outcome.errors.full_messages.join(", ") %>
+
+<%= form_with(model: @outcome, url: repositories_path, local: true) do |form| %>
+  <%= form.text_field(:technology_name, placeholder: "Technology") %>
+  <%= form.text_field(:category_name, placeholder: "Category") %>
+  <%= form.text_field(:repository_name, placeholder: "Repository") %>
+  <%= form.button("Submit") %>
+<% end %>
+

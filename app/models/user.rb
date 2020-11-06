@@ -6,5 +6,5 @@
 #  name :string
 #
 class User < ApplicationRecord
-  has_many :technologies
+  has_many :technologies, dependent: :destroy
 end

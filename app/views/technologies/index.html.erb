@@ -1,0 +1,6 @@
+<%= link_to "New Repository", new_repository_path %>
+<ul>
+  <% @technologies.each do |technology| %>
+    <li><%= link_to technology.name, categories_path(technology_name: technology.name) %></li>
+  <% end %>
+</ul>

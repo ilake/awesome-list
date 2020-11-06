@@ -16,19 +16,16 @@ ActiveRecord::Schema.define(version: 2020_11_06_005858) do
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "technology_id", null: false
     t.string "name", null: false
-    t.index ["user_id", "name"], name: "index_categories_on_user_id_and_name", unique: true
-    t.index ["user_id", "technology_id"], name: "index_categories_on_user_id_and_technology_id", unique: true
+    t.index ["technology_id", "name"], name: "index_categories_on_technology_id_and_name", unique: true
   end
 
   create_table "repositories", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "category_id", null: false
     t.string "name", null: false
-    t.jsonb "details"
-    t.index ["user_id", "name"], name: "index_repositories_on_user_id_and_name", unique: true
+    t.jsonb "details", default: "{}", null: false
+    t.index ["category_id", "name"], name: "index_repositories_on_category_id_and_name", unique: true
   end
 
   create_table "technologies", force: :cascade do |t|
