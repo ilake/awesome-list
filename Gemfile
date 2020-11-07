@@ -37,6 +37,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'active_interaction', '~> 3.8.3'
 gem 'graphql-client', '~> 0.16.0'
+gem 'devise', '~> 4.7.3'
+gem 'omniauth-github', '~> 1.4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -44,6 +46,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.1'
   gem 'factory_bot_rails',  '~> 6.1.0'
   gem 'faker', '~> 2.14.0'
+  gem 'rails-controller-testing', '~> 1.0.5'
 end
 
 group :development do
