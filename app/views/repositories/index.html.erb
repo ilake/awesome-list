@@ -2,6 +2,11 @@
 
 <ul>
   <% @repositories.each do |repository| %>
-    <li><%= link_to repository.name, repository_path(params[:technology_name], params[:category_name], repository.name) %></li>
+    <li>
+      <%= link_to repository.name, repository_path(params[:technology_name], params[:category_name], repository.name) %>
+      fork: <%= repository.details["forkCount"] %>,
+      star: <%= repository.details["stargazerCount"] %>,
+      last upated at: <%= repository.details["updatedAt"] %>,
+    </li>
   <% end %>
 </ul>

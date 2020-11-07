@@ -1,1 +1,8 @@
-<%= @repository.inspect %>
+<ul>
+  <li>name: <%= @repository.name %></li>
+  <li>description: <%= @repository.details["description"] %></li>
+  <li>fork: <%= @repository.details["forkCount"] %></li>
+  <li>star: <%= @repository.details["stargazerCount"] %></li>
+  <li>last upated at: <%= @repository.details["updatedAt"] %></li>
+  <li>url: <%= link_to @repository.details["url"], @repository.details["url"] %></li>
+</ul>
