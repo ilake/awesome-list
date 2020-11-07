@@ -30,7 +30,7 @@ RSpec.describe Users::FromOmniauth do
     context "when the existing_user came again" do
       let!(:existing_user) { FactoryBot.create(:user, provider: "github", uid: uid, email: email, name: name) }
 
-      it "is valid" do
+      it "is valid and doesn't create another user" do
         expect {
           outcome
         }.not_to change {

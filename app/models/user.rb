@@ -9,6 +9,6 @@
 #  uid      :string           not null
 #
 class User < ApplicationRecord
-  devise :omniauthable#, :database_authenticatable
+  devise :omniauthable
   has_many :technologies, dependent: :destroy
 end

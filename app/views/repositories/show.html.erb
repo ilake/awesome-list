@@ -1,8 +1,10 @@
+<%= link_to "/", root_path %> - <%= link_to params[:technology_name], categories_path(params[:technology_name]) %> - <%= link_to params[:category_name], repositories_list_path(params[:technology_name], params[:category_name]) %>
+
 <ul>
   <li>name: <%= @repository.name %></li>
-  <li>description: <%= @repository.details["description"] %></li>
-  <li>fork: <%= @repository.details["forkCount"] %></li>
-  <li>star: <%= @repository.details["stargazerCount"] %></li>
-  <li>last upated at: <%= @repository.details["updatedAt"] %></li>
-  <li>url: <%= link_to @repository.details["url"], @repository.details["url"] %></li>
+  <li>description: <%= @repository.description %></li>
+  <li>fork: <%= @repository.forkCount %></li>
+  <li>star: <%= @repository.stargazerCount %></li>
+  <li>last upated at: <%= @repository.updatedAt %></li>
+  <li>url: <%= link_to @repository.url, @repository.url %></li>
 </ul>

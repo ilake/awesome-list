@@ -13,6 +13,7 @@
 #
 class Repository < ApplicationRecord
   belongs_to :category, dependent: :destroy
+  store :details, accessors: [:description, :forkCount, :stargazerCount, :updatedAt, :url]
 
   validates :name, presence: true, uniqueness: { scope: [:category_id] }
 end
