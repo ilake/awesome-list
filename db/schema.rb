@@ -21,11 +21,17 @@ ActiveRecord::Schema.define(version: 2020_11_06_005858) do
     t.index ["technology_id", "name"], name: "index_categories_on_technology_id_and_name", unique: true
   end
 
-  create_table "repositories", force: :cascade do |t|
+  create_table "category_repository_relations", force: :cascade do |t|
     t.bigint "category_id", null: false
+    t.bigint "repository_id", null: false
+    t.index ["category_id", "repository_id"], name: "category_repository_index", unique: true
+  end
+
+  create_table "repositories", force: :cascade do |t|
+    t.string "owner", null: false
     t.string "name", null: false
     t.jsonb "details", default: "{}", null: false
-    t.index ["category_id", "name"], name: "index_repositories_on_category_id_and_name", unique: true
+    t.index ["owner", "name"], name: "index_repositories_on_owner_and_name", unique: true
   end
 
   create_table "technologies", force: :cascade do |t|

@@ -81,6 +81,30 @@ RSpec.describe Repositories::Create do
           expect(outcome.errors.details[:base]).to include(error: error_message)
         end
       end
+
+      context "when the same repository was created in different category" do
+        it "uses the same repository" do
+          details = { "foo" => "bar" }
+          response = spy(data: spy(errors: {}, as_json: { "data" => { "repository" => details }}))
+          allow(GitHub::Client).to receive(:query).with(GitHub::RepositoryQuery, variables: { owner: "baz", name: "qux" }).and_return(response)
+          # created a different category but same repository name record
+          described_class.run(
+            user: user,
+            technology_name: technology_name,
+            category_name: "different_category_name",
+            repository_name: repository_name
+          )
+
+          owner, name = repository_name.split("/")
+          expect {
+            outcome
+          }.to change {
+            Category.where(name: category_name, technology: user.technologies.take).count
+          }.by(1).and not_change {
+            Repository.where(owner: owner, name: name, details: details).count
+          }
+        end
+      end
     end
   end
 end

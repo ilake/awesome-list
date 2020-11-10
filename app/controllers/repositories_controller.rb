@@ -1,7 +1,7 @@
 class RepositoriesController < ApplicationController
   def index
     @repositories = Repository.
-      joins(category: :technology).
+      joins(categories: :technology).
       where(categories: {
               name: params[:category_name],
               technologies: {
@@ -13,7 +13,7 @@ class RepositoriesController < ApplicationController
 
   def show
     @repository = Repository.
-      joins(category: :technology).
+      joins(categories: :technology).
       where(name: params[:repository_name],
             categories: {
               name: params[:category_name],

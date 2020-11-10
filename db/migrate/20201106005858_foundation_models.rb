@@ -19,11 +19,17 @@ class FoundationModels < ActiveRecord::Migration[5.2]
       t.index [:technology_id, :name], unique: true
     end
 
-    create_table :repositories do |t|
+    create_table :category_repository_relations do |t|
       t.references :category, null: false, index: false
+      t.references :repository, null: false, index: false
+      t.index [:category_id, :repository_id], name: :category_repository_index, unique: true
+    end
+
+    create_table :repositories do |t|
+      t.string :owner, null: false
       t.string :name, null: false
       t.jsonb :details, null: false, default: '{}'
-      t.index [:category_id, :name], unique: true
+      t.index [:owner, :name], unique: true
     end
   end
 end

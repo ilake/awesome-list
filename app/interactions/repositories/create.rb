@@ -30,13 +30,15 @@ module Repositories
         end
 
         owner, name = repository_name.split("/")
-        repository = category.repositories.find_or_create_by(name: name.presence)
+        repository = Repository.find_or_create_by(owner: owner, name: name)
 
         if repository.new_record?
           errors.merge!(repository.errors)
 
           raise ActiveRecord::Rollback
         end
+
+        category.repositories << repository
 
         response = GitHub::Client.query(GitHub::RepositoryQuery, variables: { owner: owner, name: name })
 
